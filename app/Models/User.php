@@ -25,6 +25,11 @@ class User extends Authenticatable
         'business_id',
         'role',
         'phone',
+        'appointment_date',
+        'appointment_type',
+        'address',
+        'note', 
+        'date_of_birth'
     ];
 
 

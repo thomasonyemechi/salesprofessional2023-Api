@@ -57,11 +57,7 @@ class CustomerController extends Controller
         if ($validatedData->fails()) {
             return response(['errors' => $validatedData->errors()->all()], 422);
         }
-        $check = Customer::where(['business_id' => $this->bid()])->orWhere([
-            'email' => $request->email,
-            'phone' => $request->phone
-        ])->count();
-
+        $check = Customer::where(['business_id' => $this->bid()])->WHERE('email', $request->email)->orWHERE('phone', $request->phone)->count();
         if($check > 0) {
             return response([
                 'message' => 'The Email address or Phone number has been asiggned to another customer'
