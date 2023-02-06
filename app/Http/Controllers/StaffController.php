@@ -9,6 +9,35 @@ use Illuminate\Support\Facades\Validator;
 
 class StaffController extends Controller
 {
+    public function updateStaff(Request $request)
+    {
+        $validatedData = Validator::make($request->all(), [
+            'staff_id' => 'required|exists:users,id',
+            'firstname' => 'string|required',
+            'lastname' => 'string|required',
+            'role' => 'integer|required'
+        ]);
+        if ($validatedData->fails()) {
+            return response(['errors' => $validatedData->errors()->all()], 422);
+        }
+
+        User::where('id', $request->staff_id)->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'address' => $request->address,
+            'note' => $request->note,
+            'role' => $request->role,
+            'date_of_birth' => $request->date_of_birth,
+            'appointment_date' => $request->appointment_date,
+            'appointment_type' => $request->appointment_type
+        ]);
+        return response([
+            'message' => 'Staff profile ('.$request->firstname.') has been updated'
+        ], 200);  
+    }
+
+
+
     public function addStaff(Request $request)
     {
         $validatedData = Validator::make($request->all(), [
@@ -43,7 +72,7 @@ class StaffController extends Controller
             'appointment_type' => $request->appointment_type
         ]);
         return response([
-            'message' => 'Staff has been added to business!'
+            'message' => 'Staff ('.$request->firstname.') has been added to business!'
         ], 200);  
     }
 }

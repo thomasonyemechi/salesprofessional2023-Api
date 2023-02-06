@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::group(['prefix' => 'staff'], function () {
         Route::post('/add', [StaffController::class, 'addStaff']); 
+        Route::post('/update', [StaffController::class, 'updateStaff']);
     });
 
     
