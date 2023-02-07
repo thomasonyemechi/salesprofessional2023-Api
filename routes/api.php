@@ -4,6 +4,8 @@ use App\Http\Controllers\AffiliateController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
@@ -44,7 +46,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //affiliate profile
     Route::group(['prefix' => 'affiliate'], function () {
-        Route::post('/add', [AffiliateController::class, 'registerAffiliate']); 
+        Route::post('/add', [AffiliateController::class, 'registerAffiliate']);
         Route::post('/update', [AffiliateController::class, 'updateAffiliate']);
         Route::delete('/delete/{id}', [AffiliateController::class, 'deleteAffiliate']);
         Route::get('/', [AffiliateController::class, 'getAffiliates']);
@@ -52,16 +54,30 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //cutomer profile
     Route::group(['prefix' => 'customer'], function () {
-        Route::post('/add', [CustomerController::class, 'addCustomer']); 
+        Route::post('/add', [CustomerController::class, 'addCustomer']);
         Route::post('/update', [CustomerController::class, 'updateCustomer']);
         Route::get('/', [CustomerController::class, 'getCustomers']);
     });
 
-
+    //staffs
     Route::group(['prefix' => 'staff'], function () {
-        Route::post('/add', [StaffController::class, 'addStaff']); 
+        Route::post('/add', [StaffController::class, 'addStaff']);
         Route::post('/update', [StaffController::class, 'updateStaff']);
     });
 
-    
+    //product category
+    Route::group(['prefix' => 'product_category'], function () {
+        Route::post('/add', [ProductController::class, 'createProductCategory']);
+        Route::post('/update', [ProductController::class, 'updateCategory']);
+        Route::get('/', [ProductController::class, 'getProductCategory']);
+    });
+
+    //Items
+    Route::group(['prefix' => 'item'], function () {
+        Route::post('/add', [ItemsController::class, 'createItem']);
+        Route::post('/update', [ItemsController::class, 'updateItem']);
+        Route::get('/', [ItemsController::class, 'getItemsList']);
+        Route::get('/pos', [ItemsController::class, 'getItemsForSale']);        
+        Route::post('/search', [ItemsController::class, 'searchItem']);        
+    });
 });

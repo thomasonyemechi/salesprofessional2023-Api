@@ -65,7 +65,7 @@ class SupplierController extends Controller
             ], 409);
         }
 
-        Supplier::create([
+        $supplier = Supplier::create([
             'business_id' => $this->bid(),
             'fullname' => $request->name,
             'phone' => $request->phone,
@@ -75,7 +75,8 @@ class SupplierController extends Controller
             'note' => $request->note
         ]);
         return response([
-            'message' => 'Supplier has been added to business!'
+            'message' => 'Supplier has been added to business!',
+            'id' => $supplier->id
         ], 200);  
     }
 }
