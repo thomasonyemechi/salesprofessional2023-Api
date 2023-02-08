@@ -10,7 +10,7 @@ class SupplierController extends Controller
 {
     public function getSuppliers()
     {
-        return Supplier::where('business_id', $this->bid() )->orderby('updated_at', 'asc')->paginate(100);
+        return Supplier::where('business_id', $this->bid() )->orderby('updated_at', 'desc')->paginate(25);
     }
 
     public function deleteSupplier($id)

@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function getCustomers()
     {
-        return Customer::where('business_id', $this->bid() )->orderby('updated_at', 'asc')->paginate(100);
+        return Customer::where('business_id', $this->bid() )->orderby('updated_at', 'desc')->paginate(100);
     }
 
     public function deleteAffiliate($id)
