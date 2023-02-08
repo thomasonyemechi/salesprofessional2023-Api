@@ -77,6 +77,6 @@ class SupplierController extends Controller
         return response([
             'message' => 'Supplier has been added to business!',
             'id' => $supplier->id
-        ], 200);  
+        ], 200);
     }
 }
