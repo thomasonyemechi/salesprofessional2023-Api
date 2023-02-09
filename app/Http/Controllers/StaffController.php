@@ -57,7 +57,7 @@ class StaffController extends Controller
             ], 409);
         }
 
-        User::create([
+        $staff = User::create([
             'business_id' => $this->bid(),
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -72,7 +72,8 @@ class StaffController extends Controller
             'appointment_type' => $request->appointment_type
         ]);
         return response([
-            'message' => 'Staff ('.$request->firstname.') has been added to business!'
+            'message' => 'Staff ('.$request->firstname.') has been added to business!',
+            'id' => $staff->id
         ], 200);  
     }
 }
