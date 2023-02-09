@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class StaffController extends Controller
 {
+    function getAllStaff()
+    {
+        return User::where(['business_id' => $this->bid(), ['role', '!=', '1'] ])->paginate(25, ['id','firstname', 'lastname', 'email', 'phone', 'address']);
+    }
+
     public function updateStaff(Request $request)
     {
         $validatedData = Validator::make($request->all(), [
