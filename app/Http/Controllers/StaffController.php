@@ -11,7 +11,9 @@ class StaffController extends Controller
 {
     function getAllStaff()
     {
-        return User::where(['business_id' => $this->bid(), ['role', '!=', '1'] ])->paginate(25, ['id','firstname', 'lastname', 'email', 'phone', 'address']);
+        return User::where(['business_id' => $this->bid(), ['role', '!=', '1'] ])->paginate(25, [
+            'id','firstname', 'lastname', 'email', 'phone', 'address', 'role', 'appointment_date', 'appointment_type', 'date_of_birth', 'note'
+        ]);
     }
 
     public function updateStaff(Request $request)
