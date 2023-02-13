@@ -64,7 +64,7 @@ class CustomerController extends Controller
             ], 409);
         }
 
-        Customer::create([
+        $customer = Customer::create([
             'business_id' => $this->bid(),
             'fullname' => $request->name,
             'phone' => $request->phone,
@@ -75,7 +75,8 @@ class CustomerController extends Controller
             'referral_id' => $request->referral_id ?? 0
         ]);
         return response([
-            'message' => 'Customer ('.$request->name.') has been added to business!'
+            'message' => 'Customer ('.$request->name.') has been added to business!',
+            'id' => $customer->id
         ], 200);  
     }
 }

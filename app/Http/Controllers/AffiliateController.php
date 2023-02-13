@@ -67,7 +67,7 @@ class AffiliateController extends Controller
             ], 409);
         }
 
-        Affiliate::create([
+        $affiliate = Affiliate::create([
             'business_id' => $this->bid(),
             'fullname' => $request->name,
             'phone' => $request->phone,
@@ -77,7 +77,8 @@ class AffiliateController extends Controller
             'note' => $request->note
         ]);
         return response([
-            'message' => 'Affiliate ('.$request->name.') has been added to business!'
+            'message' => 'Affiliate ('.$request->name.') has been added to business!',
+            'id' => $affiliate->id
         ], 200);  
     }
 }
