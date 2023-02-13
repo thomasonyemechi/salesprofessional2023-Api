@@ -16,7 +16,7 @@ class SupplierController extends Controller
     public function deleteSupplier($id)
     {
         return response([
-            'message' => 'Supplier Has been deleted Sucessfully'
+            'message' => 'Supplier Has been deleted Sucessfuly'
         ]);
     }
 

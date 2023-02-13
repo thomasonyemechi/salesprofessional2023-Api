@@ -10,13 +10,13 @@ class AffiliateController extends Controller
 {
     public function getAffiliates()
     {
-        return Affiliate::where('business_id', $this->bid() )->orderby('updated_at', 'asc')->paginate(100);
+        return Affiliate::where('business_id', $this->bid() )->orderby('updated_at', 'desc')->paginate(100);
     }
 
     public function deleteAffiliate($id)
     {
         return response([
-            'message' => 'Affiliate has been deleted sucessfully'
+            'message' => 'Affiliate has been deleted sucessfuly'
         ]);
     }
 

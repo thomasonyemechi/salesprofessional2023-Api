@@ -31,7 +31,7 @@ class AuthController extends Controller
             'name' => $business->name, 'phone' => $business->phone, 'email' => $business->email, 'address' => $business->address
         ];
         return response([
-            'message' => 'Login successfull', 'access_token' => $accessToken, 'data' => ['user' => $user, 'business' => $business],  
+            'message' => 'Login sucessful', 'access_token' => $accessToken, 'data' => ['user' => $user, 'business' => $business],  
         ], 200);
     }
 }
