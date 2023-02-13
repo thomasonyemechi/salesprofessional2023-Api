@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('restock_summaries', function (Blueprint $table) {
             $table->id();
+            $table->integer('business_id');
+            $table->bigInteger('invoice_no');
+            $table->integer('amount');
+            $table->integer('supplier_id');
+            $table->integer('discount');
+            $table->integer('total');
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -81,4 +82,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/pos', [ItemsController::class, 'getItemsForSale']);        
         Route::post('/search', [ItemsController::class, 'searchItem']);        
     });
+
+    
+
+    Route::post('/restock', [StockController::class, 'restockItem']);
+    Route::get('/restock/{invoice}', [StockController::class, 'getInfoByInvoiceNo']);
 });

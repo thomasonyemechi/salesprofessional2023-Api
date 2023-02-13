@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('restocks', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('summary_id');
+            $table->integer('item_id');
+            $table->integer('buying_cost');
+            $table->integer('selling_price');
+            $table->string('batch_no');
+            $table->string('expiry_date');
+            $table->integer('quantity');
         });
     }
 

@@ -15,4 +15,9 @@ class Controller extends BaseController
     {
         return auth()->user()->business_id;
     }
+
+    function generateHash($length)
+    {
+        return substr(str_shuffle(str_repeat('123456789', $length)), 0, $length);
+    }
 }
