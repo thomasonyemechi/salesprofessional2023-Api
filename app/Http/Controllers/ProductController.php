@@ -48,14 +48,15 @@ class ProductController extends Controller
             ], 409);
         }
 
-        ProductCategory::create([
+        $product = ProductCategory::create([
             'business_id' => $this->bid(),
             'name' => $request->name,
             'description' => $request->description
         ]);
 
         return response([
-            'message' => 'Product category('.$request->name.') has been created'
+            'message' => 'Product category('.$request->name.') has been created',
+            'id' => $product->id
         ], 200);
     }
 }
