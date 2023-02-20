@@ -9,9 +9,8 @@ use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class StockController extends Controller
+class StockController extends SalesController
 {
-
     function getInfoByInvoiceNo($invoice)
     {
         $restockSummary = RestockSummary::with(['supplier:id,fullname,phone', 'restock_items.item:id,name,stock_value,selling_price'])->where('invoice_no', $invoice)->first();
@@ -26,15 +25,8 @@ class StockController extends Controller
         return response([
             $restockSummary,
         ], 200);
-
-        // $authors = Author::with(['books' => fn ($query) => $query->where('title', 'like', 'PHP%')])
-        //     ->whereHas(
-        //         'books',
-        //         fn ($query) =>
-        //         $query->where('title', 'like', 'PHP%')
-        //     )
-        //     ->get();
     }
+
     /*
         $items = [
             [
@@ -47,7 +39,11 @@ class StockController extends Controller
 
 
         stock types
-        1 == restock 
+        1 == +restock 
+        2 == -unstock
+        3 == +return
+        4 == null
+        5 == -sales
     */
 
     function restockItem(Request $request)
